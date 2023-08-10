@@ -32,14 +32,14 @@ class MoveFiles:
 
     folder_path  =  os.getcwd()
 
-    def text_files():
+    def text_files(self):
         text_files = glob.glob('*.txt')
         if text_files:
             os.mkdir('Text')
             for i in text_files:
                 shutil.move(i,'Text')
 
-    def video_files():
+    def video_files(self):
         video_files = glob.glob('*.mp4')
         video_files2 = glob.glob('*.mkv')
         if video_files or video_files2:
@@ -48,15 +48,21 @@ class MoveFiles:
                 shutil.move(i,'Videos')
             for i in video_files2:
                 shutil.move(i,'Videos')
-    def code_files():
+
+    def code_files(self):
         python_files = glob.glob('*.py')
         html_files = glob.glob('*.html')
         css_files = glob.glob('*.css')
         if python_files or html_files or css_files:
             os.mkdir('Code')
-            for i in code_files:
+            for i in python_files:
                 shutil.move(i,"Code")
-    def image_files():
+            for i in html_files:
+                shutil.move(i,"Code")
+            for i in css_files:
+                shutil.move(i,"Code")
+
+    def image_files(self):
         image_files = glob.glob('*.jpg')
         image_files2 = glob.glob('*.png')
         if image_files or image_files2:
@@ -67,9 +73,9 @@ class MoveFiles:
                 shutil.move(i,'Images')
 
 
-files = MoveFiles(sourcepath,desinationpath)
-files.code_files
-files.move_file
+files = MoveFiles(sourcepath,destinationpath)
+files.code_files()
+files.move_file()
 files.text_files()
 files.video_files()
 files.image_files()
