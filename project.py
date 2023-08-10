@@ -10,27 +10,9 @@ print(f"Source Path of files is {sourcepath},Destination Path of Files is {desti
 print("\n")
 
 
-class MoveFiles:
-
-    def __init__(self,sourcepath,desinationpath):
-        self.sourcepath = sourcepath
-        self.destinationpath = desinationpath
-
-    def check_error(self):
-        """
-        Check if Dictionary EXists
-        """
-        try:
-            if os.path.isdirr(self.sourcepath) and os.path.isdir(self.destinationpath) == True:
-                pass
-        except FileNotFoundError:
-            print("File Not Found")
-    def move_file(self):
-        source_files = os.listdir(self.sourcepath)
-        for files in source_files:
-            shutil.move(os.path.join(self.sourcepath,files),os.path.join(self.destinationpath,files))
-
+class CreateFolders:
     folder_path  =  os.getcwd()
+    folder_path = os.chdir(destinationpath)
 
     def text_files(self):
         text_files = glob.glob('*.txt')
@@ -81,6 +63,28 @@ class MoveFiles:
                 shutil.move(i,'Music')
             for i in music_files2:
                 shutil.move(i,'Music')
+
+
+class MoveFiles(CreateFolders):
+
+    def __init__(self,sourcepath,desinationpath):
+        self.sourcepath = sourcepath
+        self.destinationpath = desinationpath
+
+    def check_error(self):
+        """
+        Check if Dictionary EXists
+        """
+        try:
+            if os.path.isdirr(self.sourcepath) and os.path.isdir(self.destinationpath) == True:
+                pass
+        except FileNotFoundError:
+            print("File Not Found")
+
+    def move_file(self):
+        source_files = os.listdir(self.sourcepath)
+        for files in source_files:
+            shutil.move(os.path.join(self.sourcepath,files),os.path.join(self.destinationpath,files))
 
 
 
