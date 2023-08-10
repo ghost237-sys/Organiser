@@ -71,6 +71,17 @@ class MoveFiles:
                 shutil.move(i,'Images')
             for i in image_files2:
                 shutil.move(i,'Images')
+    
+    def music_files(self):
+        music_files = glob.glob('*.mp3')
+        music_files2 = glob.glob('*.m4a')
+        if music_files or music_files2:
+            os.mkdir('Music')
+            for i in music_files:
+                shutil.move(i,'Music')
+            for i in music_files2:
+                shutil.move(i,'Music')
+
 
 
 files = MoveFiles(sourcepath,destinationpath)
